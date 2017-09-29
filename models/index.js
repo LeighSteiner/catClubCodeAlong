@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize')
-const db = new Sequelize('postgress://localhost:5432/catClub', {logging:false});
+const db = new Sequelize('postgres://localhost:5432/catClub', {logging:false});
 //in the CLI, type "createdb catClub" to make database
 
 //first arg is model name, second arg is schema definition
@@ -53,7 +53,7 @@ const User = db.define('user', {
   }, 
   email: {
   	type: Sequelize.STRING,
-  	validate:: {
+  	validate: {
   		isEmail: true
   	}
   }

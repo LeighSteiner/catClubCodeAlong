@@ -10,7 +10,7 @@ const userRoutes = require('./routes/user')
 const db = require('./models').db
 
 const app = express();
-module.exports = rapp
+module.exports = app;
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -31,7 +31,7 @@ app.use((err, req, res, next) => {
 db.sync()
 .then(() => {
   console.log('our kitten database has successfully synced')
-  app.listen(300, () => {
+  app.listen(3000, () => {
    console.log('Server is listening for meows at port 3000...')
   })
 })
