@@ -3,31 +3,32 @@ const db = new Sequelize('postgres://localhost:5432/catClub', {logging:false});
 //in the CLI, type "createdb catClub" to make database
 
 //first arg is model name, second arg is schema definition
-//third arg is getters and setters instance and class methods hooks
+//third arg is getters and setters, instance and class methods, and hooks
 
 const Cat = db.define('cat', {
   name: {
   	type: Sequelize.STRING, 
-  	allowNull: false
+  	allowNull: false,
   }, 
   age: {
   	type: Sequelize.INTEGER, //age in months, getter method
-    defaultValue: 12
+    defaultValue: 12,
   }, 
   breed: {
   	type: Sequelize.ENUM('domestic short hair', 'domestic long hair', 'bengal' ), 
+    defaultValue: 'domestic short hair',
   }, 
   color: {
   	type: Sequelize.STRING, 
-  	allowNull: true
+  	allowNull: true,
   }, 
   hasShots:{
   	type: Sequelize.BOOLEAN, 
-  	defaultValue: false
+  	defaultValue: false,
   },
   description: {
   	type: Sequelize.TEXT, 
-  	allowNull: true
+  	allowNull: true,
   }
 }, {
 	getterMethods: { //virtual property
@@ -59,7 +60,7 @@ const User = db.define('user', {
   }
 })
 
-User.belongsTo(Cat, {as: 'favorite'})
-//puts a favoriteId in the User table, foreign key to Cat
+User.belongsTo(Cat, {as: 'Favorite'})
+//puts a favoriteId in the User table, gives access to "setFavorite" method
 
-module.exports = { db, Cat, User }  //destructuring
+module.exports = { db, Cat, User }  //object destructuring, equivalent to {db:db, Cat:Cat, User:User}

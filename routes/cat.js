@@ -44,6 +44,10 @@ router.put('/cat/:catId', (req, res, next) => {
    	 return cat.update(req.body)
    	 //what's the difference between cat and Cat here?
    	 //why do we want to RETURN the update?
+
+       //answers: Cat is the model in our database -- we're searching that table for the right cat
+       // cat is the specific cat we've found (we could name it anything)
+       // we want to return the update because it's a promise, and we want that value to be passed down the promise chain
    })
    .then((updatedCat) => {
    	  res.json(updatedCat);

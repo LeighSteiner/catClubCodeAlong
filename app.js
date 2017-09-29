@@ -24,7 +24,8 @@ app.use('/users', userRoutes)
 app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(err.status || 500).send(err.message);
-  //send status and send work like return statements IN THAT THEY STOP THE EXECUTION
+  //once you send a response (so res.send, res.render, res.json, res.sendStatus,
+  // that's the end of that particular request/response cycle)
 })
 
 //set up server at the end -- we want the middleware going before the server starts listening
