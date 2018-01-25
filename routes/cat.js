@@ -23,6 +23,7 @@ router.get('/cat/:catId', (req, res, next) => {
 		res.json(cat)
 	})
 	.catch(next);
+
 })
 
 //make a new cat

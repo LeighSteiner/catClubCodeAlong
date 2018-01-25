@@ -20,6 +20,9 @@ router.put('/user/:userId', (req, res, next) => {
    .then((user) => {
    	  return user.update(req.body)
    })
+   .then((updatedUser) => {
+     res.json(updatedUser)
+   })
    .catch(next);
 })
 

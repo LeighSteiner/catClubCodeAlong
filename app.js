@@ -17,6 +17,11 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname,'./public')))  //not needed for this example, its for serving html files
 app.use(morgan('dev'))
 
+// app.use("/", (req, res, next) => {
+// 	console.log('who is excited to talk about cats!?')
+// 	next();
+// })
+
 app.use('/cats', catRoutes)
 app.use('/users', userRoutes)
 
@@ -29,7 +34,7 @@ app.use((err, req, res, next) => {
 })
 
 //set up server at the end -- we want the middleware going before the server starts listening
-db.sync()
+db.sync({force: false})
 .then(() => {
   console.log('our kitten database has successfully synced')
   app.listen(3000, () => {
