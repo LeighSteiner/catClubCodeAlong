@@ -13,6 +13,31 @@ router.get('/', (req, res, next) =>   {
   .catch(next);
 })
 
+//find one user
+router.get('/user/:userId', (req, res, next) => {
+ //DO LIVE CODING HERE 
+  User.findById(req.params.userId)
+  .then((user) => {
+    res.json(user)
+  })
+  .catch(next);
+})
+
+//find a user's favorite cat
+
+router.get('/user/:userId/faveCat', (req, res, next) => {
+ //DO LIVE CODING HERE
+  User.findById(req.params.userId)
+  .then((user) => {
+   return Cat.findById(user.FavoriteId)
+  })
+  .then((faveCat) => {
+    res.json(faveCat);
+  })
+  .catch(next);
+  
+})
+
 //update a user
 
 router.put('/user/:userId', (req, res, next) => {

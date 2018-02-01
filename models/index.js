@@ -5,6 +5,7 @@ const db = new Sequelize('postgres://localhost:5432/catClub', {logging:false});
 //first arg is model name, second arg is schema definition
 //third arg is getters and setters, instance and class methods, and hooks
 
+
 const Cat = db.define('cat', {
   name: {
   	type: Sequelize.STRING, 
@@ -29,9 +30,10 @@ const Cat = db.define('cat', {
   description: {
   	type: Sequelize.TEXT, 
   	allowNull: true,
-  }
+  }, 
+
 }, {
-	getterMethods: { //virtual property
+	getterMethods: { //virtual property  //how else could we implent this using Sequelize.VIRTUAL
       ageInYears: function(){
       	return Math.round(this.age/12)
       }
