@@ -7,24 +7,41 @@ module.exports = router
 //but can direct folks to github repo
 //get all the cats
 
-router.get('/', (req, res, next) => {
-	Cat.findAll({})
-	.then((cats) => {
-		res.status(200).json(cats);
-	})
-	.catch(next);
-})
+// router.get('/', (req, res, next) => {
+// 	Cat.findAll({})
+// 	.then((cats) => {
+// 		res.status(200).json(cats);
+// 	})
+// 	.catch(next);
+// })
 
+
+router.get('/', async (req, res, next) => {
+
+    const cats = await Cat.findAll({}).catch((err) => { console.log(err) })
+    res.json(cats)
+
+
+}
+
+)
 //look at one cat
 
-router.get('/cat/:catId', (req, res, next) => {
-	Cat.findById(req.params.catId)
-	.then((cat) => {
-		res.json(cat)
-	})
-	.catch(next);
+// router.get('/cat/:catId', (req, res, next) => {
+// 	Cat.findById(req.params.catId)
+// 	.then((cat) => {
+// 		res.json(cat)
+// 	})
+// 	.catch(next);
 
+// })]
+
+router.get('/cat/:catId', async (req, res, next) => {
+  const cat = await Cat.findById(req.params.catId).catch((err)=> {next(err)})
+  if(!cat) throw new Error ('no cat :( ')
+  res.json(cat)
 })
+
 
 //make a new cat
 

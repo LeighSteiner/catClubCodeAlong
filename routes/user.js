@@ -12,6 +12,14 @@ router.get('/', (req, res, next) =>   {
   })
   .catch(next);
 })
+// see some stuff about a user's favorite cat
+
+router.get('/user/:userId/fave-cat', async (req, res, next) => {
+  let user = await User.findById(req.params.userId).catch((err) => { console.log(err) })
+  let cat = await Cat.findById(user.FavoriteId).catch((err) => {console.log(err)})
+
+  res.send( user.name + " really loves " + cat.name );
+})
 
 //update a user
 
